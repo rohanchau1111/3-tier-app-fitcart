@@ -18,7 +18,6 @@ const UpdateContentBox = ({ onSubmit, content }) => {
 
   return (
     <div className="content-box">
-      
       <input
         type="text"
         value={record.exercise}
@@ -31,11 +30,10 @@ const UpdateContentBox = ({ onSubmit, content }) => {
         onChange={(e) => setRecord({ ...record, weight: parseInt(e.target.value) })}
         placeholder="Weight in Kg"
       />
-      <p>Time: {formatDate(record.date)}</p>
-      <button onClick={handleSubmit}>Update</button>
+      <p>📅 Added: {formatDate(record.date)}</p>
+      <button onClick={handleSubmit}>✏️ Update Record</button>
     </div>
   );
 };
 
 export default UpdateContentBox;
-

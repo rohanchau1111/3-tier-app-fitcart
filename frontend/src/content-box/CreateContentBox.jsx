@@ -25,7 +25,7 @@ const CreateContentBox = ({ onSubmit }) => {
         onChange={(e) => setWeight(parseInt(e.target.value))}
         placeholder="Weight in Kg"
       />
-      <button onClick={handleSubmit}>Create</button>
+      <button onClick={handleSubmit}>🛒 Add to Cart</button>
     </div>
   );
 };
