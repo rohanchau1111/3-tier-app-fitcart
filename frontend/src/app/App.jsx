@@ -27,11 +27,11 @@ export function Home() {
     });
   }, []);
 
-  const handleCreateSubmit = (exercise, weight) => {
+  const handleCreateSubmit = (exercise, weight, diet) => {
     fetch(`${API_BASE_URL}/gym/records`, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ exercise, weight })
+      body: JSON.stringify({ exercise, weight, diet })
     }).then(response => {
       if (response.status === 201) {
         return response.json();
@@ -50,7 +50,8 @@ export function Home() {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         exercise: recordToUpdate.exercise,
-        weight: recordToUpdate.weight
+        weight: recordToUpdate.weight,
+        diet: recordToUpdate.diet
       })
     }).then(response => {
       if (response.status === 200) {

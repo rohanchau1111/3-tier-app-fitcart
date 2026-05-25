@@ -23,6 +23,9 @@ const ReadContentBox = ({ content }) => {
         <span className="price-symbol">⚖</span> {record.weight}
         <span className="price-unit"> kg</span>
       </div>
+      {record.diet && (
+        <div className="product-diet">🥗 {record.diet}</div>
+      )}
       <div className="product-stock">✓ In Stock</div>
       <div className="product-date">Added: {formatDate(record.date)}</div>
     </div>

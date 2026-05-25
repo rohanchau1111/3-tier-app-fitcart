@@ -26,6 +26,8 @@ public class GymRecordDto {
     @NotNull
     private Integer weight;
 
+    private String diet;
+
     private LocalDateTime date;
 
 }

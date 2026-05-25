@@ -28,7 +28,13 @@ const UpdateContentBox = ({ onSubmit, content }) => {
         type="number"
         value={record.weight}
         onChange={(e) => setRecord({ ...record, weight: parseInt(e.target.value) })}
-        placeholder="Weight in Kg"
+        placeholder="Body weight (kg)"
+      />
+      <input
+        type="text"
+        value={record.diet || ''}
+        onChange={(e) => setRecord({ ...record, diet: e.target.value })}
+        placeholder="Diet / Nutrition"
       />
       <p>📅 Added: {formatDate(record.date)}</p>
       <button onClick={handleSubmit}>✏️ Update Record</button>

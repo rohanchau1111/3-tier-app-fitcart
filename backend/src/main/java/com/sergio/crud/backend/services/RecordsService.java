@@ -53,6 +53,10 @@ public class RecordsService {
             record.setWeight(recordDto.getWeight());
         }
 
+        if (recordDto.getDiet() != null) {
+            record.setDiet(recordDto.getDiet());
+        }
+
         GymRecord savedRecord = gymRecordsRepository.save(record);
 
         return gymRecordMapper.toGymRecordDto(savedRecord);

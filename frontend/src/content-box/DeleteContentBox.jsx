@@ -24,6 +24,9 @@ const DeleteContentBox = ({ onSubmit, content }) => {
         <span className="price-symbol">⚖</span> {record.weight}
         <span className="price-unit"> kg</span>
       </div>
+      {record.diet && (
+        <div className="product-diet">🥗 {record.diet}</div>
+      )}
       <div className="product-date">📅 {formatDate(record.date)}</div>
       <br />
       <button className="delete-btn" onClick={handleSubmit}>🗑️ Remove from Cart</button>

@@ -40,6 +40,9 @@ public class GymRecord {
     @Column
     private Integer weight;
 
+    @Column
+    private String diet;
+
     @CreatedDate
     private LocalDateTime created;
 
