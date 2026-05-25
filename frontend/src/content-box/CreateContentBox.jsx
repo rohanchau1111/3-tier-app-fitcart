@@ -2,11 +2,11 @@ import React from 'react';
 import './ContentBox.css';
 
 const CreateContentBox = ({ onSubmit, advisorPick = { exercise: '', diet: '' } }) => {
+  const [name, setName]         = React.useState('');
   const [exercise, setExercise] = React.useState('');
   const [weight, setWeight]     = React.useState('');
   const [diet, setDiet]         = React.useState('');
 
-  // Auto-fill when advisor applies a pick
   React.useEffect(() => {
     if (advisorPick.exercise) setExercise(advisorPick.exercise);
     if (advisorPick.diet)     setDiet(advisorPick.diet);
@@ -14,8 +14,8 @@ const CreateContentBox = ({ onSubmit, advisorPick = { exercise: '', diet: '' } }
 
   const handleSubmit = () => {
     if (!exercise.trim()) return;
-    onSubmit(exercise.trim(), parseInt(weight) || 0, diet.trim());
-    setExercise(''); setWeight(''); setDiet('');
+    onSubmit(name.trim(), exercise.trim(), parseInt(weight) || 0, diet.trim());
+    setName(''); setExercise(''); setWeight(''); setDiet('');
   };
 
   const isAdvisorFilled = advisorPick.exercise && exercise === advisorPick.exercise;
@@ -25,6 +25,15 @@ const CreateContentBox = ({ onSubmit, advisorPick = { exercise: '', diet: '' } }
       {isAdvisorFilled && (
         <div className="advisor-applied-tag">✅ Advisor recommendation applied</div>
       )}
+      <div className="field-group">
+        <label className="field-label">👤 Person Name</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="e.g. Prashant Kumar"
+        />
+      </div>
       <div className="field-group">
         <label className="field-label">🏋️ Exercise Name</label>
         <input

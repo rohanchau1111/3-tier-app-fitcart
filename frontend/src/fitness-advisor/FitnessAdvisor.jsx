@@ -217,6 +217,7 @@ const getCategory = (bmi) => {
 };
 
 const FitnessAdvisor = ({ onApply }) => {
+  const [name, setName]         = React.useState('');
   const [height, setHeight]     = React.useState('');
   const [weight, setWeight]     = React.useState('');
   const [result, setResult]     = React.useState(null);
@@ -229,7 +230,7 @@ const FitnessAdvisor = ({ onApply }) => {
     if (!h || !w || h < 50 || h > 300 || w < 10 || w > 500) return;
     const bmi = w / ((h / 100) ** 2);
     const cat = getCategory(bmi);
-    setResult({ bmi: bmi.toFixed(1), ...RECOMMENDATIONS[cat] });
+    setResult({ bmi: bmi.toFixed(1), personName: name.trim() || 'Athlete', ...RECOMMENDATIONS[cat] });
     setSelected(null);
     setActiveTab('exercise');
   };
@@ -262,6 +263,16 @@ const FitnessAdvisor = ({ onApply }) => {
 
         {/* ── Inputs ── */}
         <div className="advisor-inputs">
+          <div className="adv-field adv-field-name">
+            <label className="adv-label">👤 Full Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="e.g. Prashant Kumar"
+              className="adv-input"
+            />
+          </div>
           <div className="adv-field">
             <label className="adv-label">📏 Height (cm)</label>
             <input
@@ -288,6 +299,17 @@ const FitnessAdvisor = ({ onApply }) => {
         {/* ── Result ── */}
         {result && (
           <div className="advisor-result" style={{ borderColor: result.border, background: result.bg }}>
+
+            {/* Personalised greeting */}
+            <div className="person-greeting">
+              <span className="person-avatar">
+                {result.personName.charAt(0).toUpperCase()}
+              </span>
+              <div>
+                <p className="person-hello">Hello, <strong>{result.personName}</strong>! 👋</p>
+                <p className="person-sub">Here is your personalised fitness &amp; nutrition plan based on your BMI.</p>
+              </div>
+            </div>
 
             {/* BMI Score row */}
             <div className="bmi-row">

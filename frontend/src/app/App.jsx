@@ -27,11 +27,11 @@ export function Home({ advisorPick = { exercise: '', diet: '' } }) {
     });
   }, []);
 
-  const handleCreateSubmit = (exercise, weight, diet) => {
+  const handleCreateSubmit = (name, exercise, weight, diet) => {
     fetch(`${API_BASE_URL}/gym/records`, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ exercise, weight, diet })
+      body: JSON.stringify({ name, exercise, weight, diet })
     }).then(response => {
       if (response.status === 201) {
         return response.json();
@@ -49,6 +49,7 @@ export function Home({ advisorPick = { exercise: '', diet: '' } }) {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
+        name: recordToUpdate.name,
         exercise: recordToUpdate.exercise,
         weight: recordToUpdate.weight,
         diet: recordToUpdate.diet
@@ -62,7 +63,7 @@ export function Home({ advisorPick = { exercise: '', diet: '' } }) {
       if (data !== null) {
         setRecords(records.map(record =>
           record.id === data.id
-            ? { ...record, exercise: data.exercise, weight: data.weight }
+            ? { ...record, name: data.name, exercise: data.exercise, weight: data.weight, diet: data.diet }
             : record
         ));
       }

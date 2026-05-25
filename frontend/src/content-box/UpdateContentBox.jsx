@@ -12,6 +12,15 @@ const UpdateContentBox = ({ onSubmit, content }) => {
   return (
     <div className="content-box">
       <div className="field-group">
+        <label className="field-label">👤 Person Name</label>
+        <input
+          type="text"
+          value={record.name || ''}
+          onChange={(e) => setRecord({ ...record, name: e.target.value })}
+          placeholder="e.g. Prashant Kumar"
+        />
+      </div>
+      <div className="field-group">
         <label className="field-label">🏋️ Exercise Name</label>
         <input
           type="text"

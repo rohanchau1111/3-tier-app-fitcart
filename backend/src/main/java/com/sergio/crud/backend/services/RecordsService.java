@@ -58,6 +58,11 @@ public class RecordsService {
                     return new AppException("Gym record not found", HttpStatus.NOT_FOUND);
                 });
 
+        if (recordDto.getName() != null) {
+            log.debug("Service: Patching name -> {}", recordDto.getName());
+            record.setName(recordDto.getName());
+        }
+
         if (recordDto.getExercise() != null) {
             log.debug("Service: Patching exercise -> {}", recordDto.getExercise());
             record.setExercise(recordDto.getExercise());

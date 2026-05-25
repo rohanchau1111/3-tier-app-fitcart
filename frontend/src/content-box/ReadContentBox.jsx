@@ -11,8 +11,11 @@ const ReadContentBox = ({ content }) => {
   return (
     <div className="content-box product-card">
       <div className="product-header">
-        <div className="product-emoji">🏋️</div>
+        <div className="product-avatar">
+          {record.name ? record.name.charAt(0).toUpperCase() : '🏋'}
+        </div>
         <div className="product-title-block">
+          {record.name && <div className="product-person-name">👤 {record.name}</div>}
           <div className="product-name">{record.exercise}</div>
           <div className="product-rating">★★★★★ <span className="rating-count">(128)</span></div>
           <span className="badge-active">✓ Active</span>

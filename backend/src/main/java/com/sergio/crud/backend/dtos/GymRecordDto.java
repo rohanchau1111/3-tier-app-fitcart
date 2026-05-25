@@ -20,6 +20,8 @@ public class GymRecordDto {
 
     private Long id;
 
+    private String name;
+
     @NotNull
     private String exercise;
 

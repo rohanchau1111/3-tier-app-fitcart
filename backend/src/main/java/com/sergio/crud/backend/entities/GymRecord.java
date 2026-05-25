@@ -35,6 +35,9 @@ public class GymRecord {
     private Long id;
 
     @Column
+    private String name;
+
+    @Column
     private String exercise;
 
     @Column
