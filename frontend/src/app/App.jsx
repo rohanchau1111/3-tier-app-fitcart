@@ -7,7 +7,7 @@ import ReadContentBox from '../content-box/ReadContentBox';
 import UpdateContentBox from '../content-box/UpdateContentBox';
 import DeleteContentBox from '../content-box/DeleteContentBox';
 
-export function Home() {
+export function Home({ advisorPick = { exercise: '', diet: '' } }) {
   const [records, setRecords] = React.useState([]);
 
  const API_BASE_URL = "/api";
@@ -91,7 +91,7 @@ export function Home() {
         <VerticalContainer>
           <div>
             <h2>Create</h2>
-            <CreateContentBox onSubmit={handleCreateSubmit} />
+            <CreateContentBox onSubmit={handleCreateSubmit} advisorPick={advisorPick} />
           </div>
         </VerticalContainer>
       </div>

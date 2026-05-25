@@ -1,4 +1,6 @@
+import React from 'react';
 import Home from './app/App';
+import FitnessAdvisor from './fitness-advisor/FitnessAdvisor';
 import './App.css';
 
 const SPORTS = [
@@ -13,10 +15,16 @@ const SPORTS = [
 ];
 
 function App() {
+  const [advisorPick, setAdvisorPick] = React.useState({ exercise: '', diet: '' });
+
+  const handleAdvisorApply = (exercise, diet) => {
+    setAdvisorPick({ exercise, diet });
+  };
+
   return (
     <div className="page-wrapper">
 
-      {/* ── Top bar ── */}
+      {/* Top bar */}
       <div className="topbar">
         <span>Free delivery on orders over ₹999</span>
         <span>|</span>
@@ -25,19 +33,17 @@ function App() {
         <span>Help &amp; Contact</span>
       </div>
 
-      {/* ── Header ── */}
+      {/* Header */}
       <header className="dec-header">
         <div className="dec-logo">
           <span className="dec-logo-text">FIT</span>
           <span className="dec-logo-badge">CART</span>
         </div>
-
         <div className="dec-search">
           <span className="search-icon">🔍</span>
           <input type="text" placeholder="What sport are you looking for?" />
           <button className="dec-search-btn">Search</button>
         </div>
-
         <div className="dec-header-actions">
           <button className="action-btn">
             <span className="action-icon">📍</span>
@@ -59,7 +65,7 @@ function App() {
         </div>
       </header>
 
-      {/* ── Main navigation ── */}
+      {/* Navigation */}
       <nav className="dec-nav">
         <a href="#" className="nav-link active">All Sports</a>
         <a href="#" className="nav-link">Fitness &amp; Gym</a>
@@ -71,13 +77,13 @@ function App() {
         <a href="#" className="nav-link sale">Sale 🔴</a>
       </nav>
 
-      {/* ── Hero Banner ── */}
+      {/* Hero Banner */}
       <section className="dec-hero">
         <div className="dec-hero-inner">
           <div className="dec-hero-text">
-            <p className="hero-tag">PERSONAL FITNESS TRACKER</p>
-            <h1>Sport is for<br /><span>Everyone.</span></h1>
-            <p className="hero-sub">Track every rep, every kg, every meal. Your fitness journey, fully logged.</p>
+            <p className="hero-tag">YOUR PERSONAL FITNESS TRACKER</p>
+            <h1>Track Your <span>Progress.</span><br />Crush Every Goal.</h1>
+            <p className="hero-sub">Log your exercises, monitor your body weight, and track your nutrition — all in one place.</p>
             <div className="hero-actions">
               <button className="hero-cta-primary">Start Tracking</button>
               <button className="hero-cta-secondary">Learn More</button>
@@ -103,7 +109,7 @@ function App() {
         </div>
       </section>
 
-      {/* ── Sport Category Strip ── */}
+      {/* Sport Category Strip */}
       <section className="sport-strip">
         <div className="sport-strip-inner">
           {SPORTS.map((s) => (
@@ -115,18 +121,20 @@ function App() {
         </div>
       </section>
 
-      {/* ── Records Section ── */}
+      {/* Fitness Advisor */}
       <section className="records-section">
         <div className="records-header">
           <div className="records-title-block">
             <h2 className="records-title">My Gym Records</h2>
             <p className="records-sub">Manage your workouts, body weight &amp; nutrition</p>
           </div>
-          <div className="records-meta">
-            <span className="records-tag">🏋️ Logged Today</span>
-          </div>
+          <span className="records-tag">🏋️ Logged Today</span>
         </div>
-        <Home />
+
+        {/* BMI Advisor — apply auto-fills the CREATE form */}
+        <FitnessAdvisor onApply={handleAdvisorApply} />
+
+        <Home advisorPick={advisorPick} />
       </section>
 
     </div>

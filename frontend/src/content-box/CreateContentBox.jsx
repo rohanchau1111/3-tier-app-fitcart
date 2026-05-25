@@ -1,10 +1,16 @@
 import React from 'react';
 import './ContentBox.css';
 
-const CreateContentBox = ({ onSubmit }) => {
+const CreateContentBox = ({ onSubmit, advisorPick = { exercise: '', diet: '' } }) => {
   const [exercise, setExercise] = React.useState('');
   const [weight, setWeight]     = React.useState('');
   const [diet, setDiet]         = React.useState('');
+
+  // Auto-fill when advisor applies a pick
+  React.useEffect(() => {
+    if (advisorPick.exercise) setExercise(advisorPick.exercise);
+    if (advisorPick.diet)     setDiet(advisorPick.diet);
+  }, [advisorPick]);
 
   const handleSubmit = () => {
     if (!exercise.trim()) return;
@@ -12,8 +18,13 @@ const CreateContentBox = ({ onSubmit }) => {
     setExercise(''); setWeight(''); setDiet('');
   };
 
+  const isAdvisorFilled = advisorPick.exercise && exercise === advisorPick.exercise;
+
   return (
     <div className="content-box">
+      {isAdvisorFilled && (
+        <div className="advisor-applied-tag">✅ Advisor recommendation applied</div>
+      )}
       <div className="field-group">
         <label className="field-label">🏋️ Exercise Name</label>
         <input
