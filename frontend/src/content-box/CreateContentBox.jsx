@@ -3,37 +3,46 @@ import './ContentBox.css';
 
 const CreateContentBox = ({ onSubmit }) => {
   const [exercise, setExercise] = React.useState("");
-  const [weight, setWeight] = React.useState(0);
+  const [weight, setWeight] = React.useState("");
   const [diet, setDiet] = React.useState("");
 
   const handleSubmit = () => {
-    onSubmit(exercise, weight || 0, diet);
+    onSubmit(exercise, parseInt(weight) || 0, diet);
     setExercise('');
-    setWeight(0);
+    setWeight('');
     setDiet('');
   };
 
   return (
     <div className="content-box">
-      <input
-        type="text"
-        value={exercise}
-        onChange={(e) => setExercise(e.target.value)}
-        placeholder="Exercise name"
-      />
-      <input
-        type="number"
-        value={weight}
-        onChange={(e) => setWeight(parseInt(e.target.value))}
-        placeholder="Body weight (kg)"
-      />
-      <input
-        type="text"
-        value={diet}
-        onChange={(e) => setDiet(e.target.value)}
-        placeholder="Diet / Nutrition (e.g. High protein)"
-      />
-      <button onClick={handleSubmit}>🛒 Add to Cart</button>
+      <div className="field-group">
+        <label className="field-label"><span>🏋️</span> Exercise Name</label>
+        <input
+          type="text"
+          value={exercise}
+          onChange={(e) => setExercise(e.target.value)}
+          placeholder="e.g. Bench Press, Running"
+        />
+      </div>
+      <div className="field-group">
+        <label className="field-label"><span>⚖️</span> Body Weight (kg)</label>
+        <input
+          type="number"
+          value={weight}
+          onChange={(e) => setWeight(e.target.value)}
+          placeholder="e.g. 75"
+        />
+      </div>
+      <div className="field-group">
+        <label className="field-label"><span>🥗</span> Diet / Nutrition</label>
+        <input
+          type="text"
+          value={diet}
+          onChange={(e) => setDiet(e.target.value)}
+          placeholder="e.g. High protein, Low carb"
+        />
+      </div>
+      <button className="btn-primary" onClick={handleSubmit}>🛒 Add to Cart</button>
     </div>
   );
 };

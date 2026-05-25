@@ -6,10 +6,7 @@ const UpdateContentBox = ({ onSubmit, content }) => {
 
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}/${month}/${day}`;
+    return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
   };
 
   const handleSubmit = () => {
@@ -18,26 +15,35 @@ const UpdateContentBox = ({ onSubmit, content }) => {
 
   return (
     <div className="content-box">
-      <input
-        type="text"
-        value={record.exercise}
-        onChange={(e) => setRecord({ ...record, exercise: e.target.value })}
-        placeholder="Exercise name"
-      />
-      <input
-        type="number"
-        value={record.weight}
-        onChange={(e) => setRecord({ ...record, weight: parseInt(e.target.value) })}
-        placeholder="Body weight (kg)"
-      />
-      <input
-        type="text"
-        value={record.diet || ''}
-        onChange={(e) => setRecord({ ...record, diet: e.target.value })}
-        placeholder="Diet / Nutrition"
-      />
-      <p>📅 Added: {formatDate(record.date)}</p>
-      <button onClick={handleSubmit}>✏️ Update Record</button>
+      <div className="field-group">
+        <label className="field-label"><span>🏋️</span> Exercise Name</label>
+        <input
+          type="text"
+          value={record.exercise}
+          onChange={(e) => setRecord({ ...record, exercise: e.target.value })}
+          placeholder="Exercise name"
+        />
+      </div>
+      <div className="field-group">
+        <label className="field-label"><span>⚖️</span> Body Weight (kg)</label>
+        <input
+          type="number"
+          value={record.weight}
+          onChange={(e) => setRecord({ ...record, weight: parseInt(e.target.value) })}
+          placeholder="e.g. 75"
+        />
+      </div>
+      <div className="field-group">
+        <label className="field-label"><span>🥗</span> Diet / Nutrition</label>
+        <input
+          type="text"
+          value={record.diet || ''}
+          onChange={(e) => setRecord({ ...record, diet: e.target.value })}
+          placeholder="e.g. High protein"
+        />
+      </div>
+      <div className="date-tag">📅 Added: {formatDate(record.date)}</div>
+      <button className="btn-primary" onClick={handleSubmit}>✏️ Update Record</button>
     </div>
   );
 };
