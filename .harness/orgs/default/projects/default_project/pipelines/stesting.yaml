@@ -22,13 +22,6 @@ pipeline:
             override: true
           buildIntelligence:
             enabled: true
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Docker
-            spec:
-              harnessImageConnectorRef: dockerconnector
           execution:
             steps:
               - step:
@@ -36,5 +29,16 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
+                    connectorRef: dockerconnector
+                    image: ubuntu
                     shell: Sh
                     command: echo "test"
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: d
+              namespace: test
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              harnessImageConnectorRef: dockerconnector
+              os: Linux
