@@ -34,8 +34,8 @@ pipeline:
                     shell: Sh
                     command: |-
                       ls -l 
-
-                      npm run build
+                      cd frontend 
+                      docker build -t frontend .
           infrastructure:
             type: KubernetesDirect
             spec:
