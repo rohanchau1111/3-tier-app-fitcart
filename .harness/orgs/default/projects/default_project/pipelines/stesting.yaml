@@ -25,17 +25,14 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: Run
-                  name: Run_1
-                  identifier: Run_1
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: dockerconnector
-                    image: ubuntu
-                    shell: Sh
-                    command: |-
-                      ls -l 
-                      cd frontend 
-                      docker build -t frontend .
+                    repo: test
+                    tags:
+                      - latest
           infrastructure:
             type: KubernetesDirect
             spec:
