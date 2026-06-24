@@ -29,8 +29,8 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
-                    connectorRef: dockerconnector
-                    image: node:20-alpine
+                    connectorRef: account.harnessImage
+                    image: ubuntu
                     shell: Sh
                     command: |-
                       ls -l 
