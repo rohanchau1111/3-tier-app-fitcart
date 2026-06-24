@@ -29,7 +29,7 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
-                    connectorRef: account.harnessImage
+                    connectorRef: dockerconnector
                     image: ubuntu
                     shell: Sh
                     command: |-
