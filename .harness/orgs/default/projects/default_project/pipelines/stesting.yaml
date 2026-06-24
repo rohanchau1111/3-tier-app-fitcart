@@ -28,7 +28,7 @@ pipeline:
           runtime:
             type: Docker
             spec:
-              harnessImageConnectorRef: dockerconnector
+              harnessImageConnectorRef: account.harnessImage
           execution:
             steps:
               - step:
