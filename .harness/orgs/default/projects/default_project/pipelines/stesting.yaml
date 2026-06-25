@@ -57,6 +57,10 @@ pipeline:
                       - latest
                     dockerfile: backend/Dockerfile
                     context: backend
+                    resources:
+                      limits:
+                        memory: 4G
+                        cpu: "1"
           infrastructure:
             type: KubernetesDirect
             spec:
