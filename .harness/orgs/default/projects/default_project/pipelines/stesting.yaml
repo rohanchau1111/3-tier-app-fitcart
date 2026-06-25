@@ -46,6 +46,17 @@ pipeline:
                       - latest
                     dockerfile: frontend/Dockerfile
                     context: frontend
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_2
+                  identifier: BuildAndPushDockerRegistry_2
+                  spec:
+                    connectorRef: rnc
+                    repo: sarocky/3tier-backend
+                    tags:
+                      - latest
+                    dockerfile: backend/Dockerfile
+                    context: backend
           infrastructure:
             type: KubernetesDirect
             spec:
