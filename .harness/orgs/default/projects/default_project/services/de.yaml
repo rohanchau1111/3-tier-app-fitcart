@@ -1,0 +1,9 @@
+service:
+  name: de
+  identifier: de
+  serviceDefinition:
+    type: Kubernetes
+    spec: {}
+  gitOpsEnabled: false
+  orgIdentifier: default
+  projectIdentifier: default_project
