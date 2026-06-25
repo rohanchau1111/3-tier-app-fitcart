@@ -40,7 +40,7 @@ pipeline:
                   name: BuildAndPushDockerRegistry_1
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
-                    connectorRef: dockerconnector
+                    connectorRef: account.harnessImage
                     repo: sarocky/3tier-frontend
                     tags:
                       - latest
