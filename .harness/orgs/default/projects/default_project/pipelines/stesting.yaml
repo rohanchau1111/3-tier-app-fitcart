@@ -45,7 +45,7 @@ pipeline:
                     tags:
                       - latest
                     dockerfile: frontend/Dockerfile
-                    context: dockerfile
+                    context: frontend
           infrastructure:
             type: KubernetesDirect
             spec:
