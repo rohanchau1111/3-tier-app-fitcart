@@ -35,6 +35,15 @@ pipeline:
                     command: |-
                       ls -l 
                       cd frontend/
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: dockerconnector
+                    repo: sarocky/3tier-frontend
+                    tags:
+                      - latest
           infrastructure:
             type: KubernetesDirect
             spec:
