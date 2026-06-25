@@ -44,6 +44,8 @@ pipeline:
                     repo: sarocky/3tier-frontend
                     tags:
                       - latest
+                    dockerfile: frontend/Dockerfile
+                    context: dockerfile
           infrastructure:
             type: KubernetesDirect
             spec:
